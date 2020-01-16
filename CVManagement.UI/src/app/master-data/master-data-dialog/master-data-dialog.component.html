@@ -1,0 +1,23 @@
+<div class="dialog">
+  <h3 class="title">{{title}}</h3>
+  <form  class="form" #mtForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="dialog-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="master-data-container">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Name" [(ngModel)]="model.name" name="name" id="name" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Description" [(ngModel)]="model.description" name="description" id="description"></textarea>
+            </mat-form-field>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <a class="btn btn-secondary ml-2" role="button" (click)="onNoClick()">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,91 @@
+<div class="dialog">
+  <h3 class="title">{{title}}</h3>
+
+  <form  class="form" [formGroup]="addCandidateForm" (ngSubmit)="onSubmit()">
+    <div class="dialog-content">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First Name" formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last Name" formControlName="lastName">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Date of birth" [formControl]="addCandidateForm.controls.dob" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="University" formControlName="university">
+          </mat-form-field>
+          <div class="form-group">
+            <label for="title">Upload Avatar</label>
+            <input type="file" name="image" (change)="fileProgress($event)"/>
+          </div>
+          <div *ngIf="fileUploadProgress">
+            Upload progress: {{ fileUploadProgress }}
+        </div>
+        <div class="image-preview mb-3" *ngIf="previewUrl" >
+            <img [src]="previewUrl" height="300" />
+        </div>
+        <div class="mb-3" *ngIf="uploadedFilePath">
+            {{uploadedFilePath}}
+        </div>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" [formControl]="addCandidateForm.controls.email"
+                   [errorStateMatcher]="matcher" required>
+            <mat-error *ngIf="addCandidateForm.controls.email.hasError('email') && !addCandidateForm.controls.email.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <span matPrefix>+84 &nbsp;</span>
+            <input type="tel" matInput placeholder="Phone Number" formControlName="phoneNumber">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input type="url" matInput placeholder="LinkedIn" formControlName="linkedIn">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input type="url" matInput placeholder="Facebook" formControlName="facebook">
+          </mat-form-field>
+          <div class="form-group">
+            <label for="title">Upload CV</label>
+            <input type="file" name="cv" (change)="cvProgress($event)"/>
+          </div>
+          <div class="cv-file">
+            <a *ngIf="cvUrl" href="{{cvUrl}}" target="_blank">Download CV</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Programing Languages" [formControl]="addCandidateForm.controls.languageIds" (change)="onLanguageChange($event)" multiple>
+              <mat-option *ngFor="let language of languagesModel" [value]="language.id">{{language.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Frameworks" [formControl]="addCandidateForm.controls.frameworkIds" (change)="onFrameworkChange($event)" multiple>
+              <mat-option *ngFor="let framework of frameworksModel" [value]="framework.id">{{framework.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Select Status" formControlName="statusId">
+              <mat-option *ngFor="let status of statusListModel" [value]="status.id" required>
+                {{status.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Note" formControlName="note"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <p *ngIf="!isFullInfo" class="button-row">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a class="btn btn-secondary ml-2" (click)="onNoClick()">Cancel</a>
+    </p>
+  </form>
+</div>

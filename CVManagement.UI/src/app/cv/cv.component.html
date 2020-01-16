@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-6">
+      <h2 class="bd-title mt-5 mb-4">List Candidates</h2>
+  </div>
+  <div class="col-md-6">
+      <div class="page-nav-right"><a class="btn btn-primary" (click)="onAddCandidate()">Add Candidate</a></div>
+  </div>
+</div>
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Avatar </th>
+      <td mat-cell *matCellDef="let row"> <img *ngIf="row.avatarUrl" [src]="row.avatarUrl" height="120" width="120"/> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> FullName </th>
+      <td mat-cell *matCellDef="let row"> {{row.lastName}} {{row.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="languages">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Languages </th>
+        <td mat-cell *matCellDef="let row"> {{row.languages}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="frameworks">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Frameworks </th>
+        <td mat-cell *matCellDef="let row"> {{row.frameworks}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="linkedIn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> LinkedIn </th>
+      <td mat-cell *matCellDef="let row"> <a href="{{row.linkedIn}}" target="_blank">LinkedIn</a> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cv">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Curriculum Vitae </th>
+      <td mat-cell *matCellDef="let row"><a *ngIf="row.cvUrl" href="{{row.cvUrl}}" target="_blank">View</a></td>
+    </ng-container>
+
+    <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Note For Candidate </th>
+      <td mat-cell *matCellDef="let row"> {{row.note}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+      <td mat-cell *matCellDef="let row" class="action">
+          <button type="button" class="btn btn-success" (click) = "onSendMail(row.email)">Sendmail</button>
+          <button type="button" class="btn btn-info" (click)="onFullInfoCandidate(row.id)">FullInfo</button>
+          <button type="button" class="btn btn-warning" (click)="onEditCandidate(row.id)">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="onRemoveCandidate(row.id)">Remove</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

@@ -1,0 +1,22 @@
+.page-nav-right {
+  text-align: right;
+  margin-top: 44px;
+}
+
+.action .btn {
+  margin-top: .3rem !important;
+  margin-left: .5rem!important;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 20px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

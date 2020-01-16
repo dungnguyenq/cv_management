@@ -1,0 +1,13 @@
+.form {
+  min-width: 150px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+.multi-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
