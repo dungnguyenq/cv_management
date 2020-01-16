@@ -1,1 +1,7 @@
 .vs/
+CVManagement.API/bin
+CVManagement.API/obj
+CVManagement.EntityFramework/bin
+CVManagement.EntityFramework/obj
+CVManagement.Service/bin
+CVManagement.Service/obj
