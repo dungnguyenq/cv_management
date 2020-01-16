@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { MaterialModule } from "../app/cv-editor/material-module";
+import { MaterialModule } from "../modules/material-module";
 import { from } from 'rxjs';
 import { DialogComponent } from './dialog/dialog.component';
 import { MasterDataTemplateComponent } from './master-data/master-data-template/master-data-template.component';
